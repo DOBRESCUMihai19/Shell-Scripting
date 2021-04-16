@@ -7,7 +7,7 @@ Set PowerShellExecutable="%PowerShellBase%\PowerShell.Exe"
 Set PowerShellScript="Y:\Digitization\GitHub\Shell-Scripting\Change_Desktop_Icons.PS1"
 
 Set TotalCommanderTitle="Total-Commander 64-Bit"
-Set TotalCommanderBase="\\ISXPFV01.hd00.unicreditgroup.eu\us_qv2_dem_user_data_pool_nra$\EE65037.HD00\Desktop\Total_Commander"
+Set TotalCommanderBase="\\<server>.<domain>.eu\<share>$\<path>\Desktop\Total_Commander"
 Set TotalCommanderExecutable="%TotalCommanderBase%\TotalCmd64.Exe"
 Set TotalCommanderInitializer="%TotalCommanderBase%\New_Ini_Location\wincmd.ini"
 
@@ -26,8 +26,8 @@ Set GoogleChromeBase="C:\Program Files (x86)\Google\Chrome\Application"
 Set GoogleChromeExecutable="C:\Program Files (x86)\Google\Chrome\Application\Chrome.Exe"
 
 Set FirefoxTitle="Firefox"
-Set FirefoxBase="\\M00pw009.hd00.unicreditgroup.eu\ee65037$\EE6503~1.HOM\Digitization\Programs\Mozilla_Firefox"
-Set FirefoxExecutable="\\M00pw009.hd00.unicreditgroup.eu\ee65037$\EE65037.HOME\Digitization\Programs\Mozilla_Firefox\Firefox.Exe"
+Set FirefoxBase="\\<server>.<domain>.eu\<share>$\<path>\Digitization\Programs\Mozilla_Firefox"
+Set FirefoxExecutable="\\<server>.<domain>.eu\<share>$\<path>\Digitization\Programs\Mozilla_Firefox\Firefox.Exe"
 
 Set InternetExplorerTitle="Internet Explorer"
 Set InternetExplorerBase=%HOMEDRIVE%%HOMEPATH%
@@ -69,7 +69,7 @@ Start %FirefoxTitle% /D %FirefoxBase% /Min %FirefoxExecutable%
 Start %InternetExplorerTitle% /D %InternetExplorerBase% /Min %InternetExplorerExecutable%
 
 @Rem Overwriting the "Outlook" Desktop Icon over the Start-Up Folder.
-Move /Y \\ISXPFV01.hd00.unicreditgroup.eu\us_qv2_dem_user_data_pool_nra$\EE65037.HD00\Desktop\Outlook.lnk \\ISXPFV01.hd00.unicreditgroup.eu\us_qv2_dem_user_data_pool_nra$\EE65037.HD00\Desktop\Start-Up\
+Move /Y \\<server>.<domain>.eu\<share>$\<path>\Desktop\Outlook.lnk \\<server>.<domain>.eu\<share>$\<path>\Desktop\Start-Up\
 
 @Rem Just remove the "Rem" command in front of the next line for debugging purposes.
 @Rem Pause
