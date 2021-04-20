@@ -42,7 +42,7 @@ Else
 
 # Rename the My Computer Desktop Icon.
 
-# Changes the My Computer desktop icon name from "This PC" to "Tele-Ordinator".
+# Changes the My Computer desktop icon name from "This PC" to "V.D.I.".
 
 $My_Computer = 17
 
@@ -50,7 +50,7 @@ $Shell = New-Object -COMObject Shell.Application
 
 $NSComputer = $Shell.Namespace($My_Computer)
 
-$NSComputer.Self.Name = "Tele-Ordinator"
+$NSComputer.Self.Name = "V.D.I."
 
 # Change the My Computer Desktop Icon, the Network Desktop Icon, the Control Panel Icon and the Recycle Bin Icons.
 

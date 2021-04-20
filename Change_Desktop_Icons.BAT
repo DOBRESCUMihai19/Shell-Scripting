@@ -7,9 +7,9 @@ Set PowerShellExecutable="%PowerShellBase%\PowerShell.Exe"
 Set PowerShellScript="Y:\Digitization\GitHub\Shell-Scripting\Change_Desktop_Icons.PS1"
 
 Set TotalCommanderTitle="Total-Commander 64-Bit"
-Set TotalCommanderBase="\\<server>.<domain>.eu\<share>$\<path>\Desktop\Total_Commander"
+Set TotalCommanderBase="\\<server>.<domain>.eu\<share>$\<path>\Desktop\Desktop_Icons\Total_Commander"
 Set TotalCommanderExecutable="%TotalCommanderBase%\TotalCmd64.Exe"
-Set TotalCommanderInitializer="%TotalCommanderBase%\New_Ini_Location\wincmd.ini"
+Set TotalCommanderInitializer="Y:\wincmd.ini"
 
 Set NotepadPPTitle="Notepad++"
 Set NotepadPPBase="Y:\Digitization\Various"
