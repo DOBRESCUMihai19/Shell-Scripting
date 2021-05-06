@@ -4,13 +4,7 @@
 # 2. Remove the My Computer Desktop Icon from the Desktop View.
 # 3. Run this snippet.
 # 4. Observe how the My Computer Desktop Icon is produced on the Desktop View,
-#    with the name "Tele-Ordinator" and with a very emotional Desktop Icon.
-
-# Allow the execution of snippets.
-
-Set-ExecutionPolicy               `
-    -ExecutionPolicy RemoteSigned `
-    -Scope           CurrentUser
+#    with the name "V.D.I." and with a very beautiful Desktop Icon.
 
 # Produce the My Computer Desktop Icon on the Desktop View.
 

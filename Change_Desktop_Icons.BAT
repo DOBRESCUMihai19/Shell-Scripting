@@ -16,7 +16,7 @@ Set PowerShellCommand=^& {Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Sco
 
 Set DesktopIconsFolder=Desktop_Icons
 Set DesktopBase=%folder_redir_path%\Desktop\
-Set DesktopIconsBase=%folder_redir_path%\Desktop\%DesktopIconsFolder%\
+Set DesktopIconsBase=%DesktopBase%%DesktopIconsFolder%\
 
 Set TotalCommanderTitle=Total-Commander 64-Bit
 Set TotalCommanderFolder=Total_Commander
@@ -113,9 +113,9 @@ Echo * Starting the "Total-Commander" Static Software Application.            *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%TotalCommanderTitle%" /D %TotalCommanderBase% /Min %TotalCommanderExecutableFilePath% /i=%TotalCommanderInitializerFilePath%
+Echo Start "%TotalCommanderTitle%" /D %TotalCommanderBase% /Max %TotalCommanderExecutableFilePath% /i=%TotalCommanderInitializerFilePath%
 Echo.
-Start "%TotalCommanderTitle%" /D %TotalCommanderBase% /Min %TotalCommanderExecutableFilePath% /i=%TotalCommanderInitializerFilePath%
+Start "%TotalCommanderTitle%" /D %TotalCommanderBase% /Max %TotalCommanderExecutableFilePath% /i=%TotalCommanderInitializerFilePath%
 Echo.
 
 Rem Starting the "Notepad++" Static Software Application.
@@ -131,7 +131,6 @@ Start "%NotepadPPTitle%" /D %NotePadPPWorkingFolderPath% /Min "%NotepadPPExecuta
 Echo.
 
 Rem Starting the "Microsoft 365 OutLook" Static Software Application.
-Rem "OutLook" is not working right now.
 Echo **************************************************************************
 Echo *                                                                        *
 Echo * Starting the "Microsoft 365 OutLook" Static Software Application.      *
@@ -140,7 +139,10 @@ Echo **************************************************************************
 Echo.
 Echo Start "%OutLookTitle%" /Min "%OutLookExecutableFilePath%"
 Echo.
-Start "%OutLookTitle%" /Min "%OutLookExecutableFilePath%"
+Rem "OutLook" is not working right now.
+Rem Just modify the following two Source Lines of Code when it starts working again.
+Echo "OutLook" is not working right now. We are not starting it.
+Rem Start "%OutLookTitle%" /Min "%OutLookExecutableFilePath%"
 Echo.
 
 Rem Starting the "Microsoft 365 Skype for Business" Static Software Application.
@@ -216,7 +218,8 @@ Echo.
 Move /Y "%OutLookShortcutFilePath%" "%DesktopIconsBase%"
 Echo.
 
-Rem Just remove the "Rem" command in front of the next line for debugging purposes.
+Rem Just add a "Rem" command in front of the next "Pause" command line,
+Rem for debugging purposes.
 Echo **************************************************************************
 Echo *                                                                        *
 Echo * Pausing in order to get the Software Results.                          *
