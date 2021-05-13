@@ -125,9 +125,9 @@ Echo * Starting the "Notepad++" Static Software Application.                  *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%NotepadPPTitle%" /D %NotePadPPWorkingFolderPath% /Min "%NotepadPPExecutableFilePath%" -systemtray
+Echo Start "%NotepadPPTitle%" /D %NotePadPPWorkingFolderPath% /Max "%NotepadPPExecutableFilePath%" -systemtray
 Echo.
-Start "%NotepadPPTitle%" /D %NotePadPPWorkingFolderPath% /Min "%NotepadPPExecutableFilePath%" -systemtray
+Start "%NotepadPPTitle%" /D %NotePadPPWorkingFolderPath% /Max "%NotepadPPExecutableFilePath%" -systemtray
 Echo.
 
 Rem Starting the "Microsoft 365 OutLook" Static Software Application.
@@ -137,12 +137,9 @@ Echo * Starting the "Microsoft 365 OutLook" Static Software Application.      *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%OutLookTitle%" /Min "%OutLookExecutableFilePath%"
+Echo Start "%OutLookTitle%" /Max "%OutLookExecutableFilePath%"
 Echo.
-Rem "OutLook" is not working right now.
-Rem Just modify the following two Source Lines of Code when it starts working again.
-Echo "OutLook" is not working right now. We are not starting it.
-Rem Start "%OutLookTitle%" /Min "%OutLookExecutableFilePath%"
+Start "%OutLookTitle%" /Max "%OutLookExecutableFilePath%"
 Echo.
 
 Rem Starting the "Microsoft 365 Skype for Business" Static Software Application.
@@ -153,9 +150,9 @@ Echo * Static Software Application.                                           *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%SkypeTitle%" /Min "%SkypeExecutableFilePath%"
+Echo Start "%SkypeTitle%" /Max "%SkypeExecutableFilePath%"
 Echo.
-Start "%SkypeTitle%" /Min "%SkypeExecutableFilePath%"
+Start "%SkypeTitle%" /Max "%SkypeExecutableFilePath%"
 Echo.
 
 Rem Starting the "Google-Chrome" Web-Browser.
@@ -165,9 +162,9 @@ Echo * Starting the "Google-Chrome" Web-Browser.                              *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%GoogleChromeTitle%" /D "%GoogleChromeBase%" /Min "%GoogleChromeExecutableFilePath%"
+Echo Start "%GoogleChromeTitle%" /D "%GoogleChromeBase%" /Max "%GoogleChromeExecutableFilePath%"
 Echo.
-Start "%GoogleChromeTitle%" /D "%GoogleChromeBase%" /Min "%GoogleChromeExecutableFilePath%"
+Start "%GoogleChromeTitle%" /D "%GoogleChromeBase%" /Max "%GoogleChromeExecutableFilePath%"
 Echo.
 
 Rem Starting the "FireFox" Web-Browser.
@@ -177,9 +174,9 @@ Echo * Starting the "FireFox" Web-Browser.                                    *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%FireFoxTitle%" /D %FireFoxBase% /Min "%FireFoxExecutableFilePath%"
+Echo Start "%FireFoxTitle%" /D %FireFoxBase% /Max "%FireFoxExecutableFilePath%"
 Echo.
-Start "%FireFoxTitle%" /D %FireFoxBase% /Min "%FireFoxExecutableFilePath%"
+Start "%FireFoxTitle%" /D %FireFoxBase% /Max "%FireFoxExecutableFilePath%"
 Echo.
 
 Rem Starting the "Internet Explorer" Web-Browser.
@@ -189,9 +186,9 @@ Echo * Starting the "Internet Explorer" Web-Browser.                          *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%InternetExplorerTitle%" /D "%InternetExplorerBase%" /Min "%InternetExplorerExecutableFilePath%"
+Echo Start "%InternetExplorerTitle%" /D "%InternetExplorerBase%" /Max "%InternetExplorerExecutableFilePath%"
 Echo.
-Start "%InternetExplorerTitle%" /D "%InternetExplorerBase%" /Min "%InternetExplorerExecutableFilePath%"
+Start "%InternetExplorerTitle%" /D "%InternetExplorerBase%" /Max "%InternetExplorerExecutableFilePath%"
 Echo.
 
 Rem Starting the "What Is Up?" Social-Media Network Client.
@@ -228,6 +225,6 @@ Echo **************************************************************************
 Echo.
 Echo Pause
 Echo.
-Pause
+Rem Pause
 Echo.
 
