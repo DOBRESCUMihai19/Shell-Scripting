@@ -1,0 +1,151 @@
+**************************************************************************
+*                                                                        *
+* Changing the current local directory to the "PowerShell" installation. *
+*                                                                        *
+**************************************************************************
+
+ChDir C:\WINDOWS\System32\WindowsPowerShell\v1.0\
+
+
+**************************************************************************
+*                                                                        *
+* Activating the Shell-Scripting on this machine.                        *
+*                                                                        *
+**************************************************************************
+
+C:\WINDOWS\System32\WindowsPowerShell\v1.0\PowerShell.Exe -Command "& {Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser}"
+
+
+**************************************************************************
+*                                                                        *
+* Skinning the desktop icons.                                            *
+*                                                                        *
+**************************************************************************
+
+C:\WINDOWS\System32\WindowsPowerShell\v1.0\PowerShell.Exe Y:\Digitization\GitHub\Shell-Scripting\Change_Desktop_Icons.PS1
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Total-Commander" Static Software Application.            *
+*                                                                        *
+**************************************************************************
+
+Start "Total-Commander 64-Bit" /D M:\Desktop_Icons\Total_Commander\ /Max M:\Desktop_Icons\Total_Commander\TotalCmd64.Exe /i=Y:\WinCmd.Ini
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Notepad++" Static Software Application.                  *
+*                                                                        *
+**************************************************************************
+
+Start "Notepad++" /D Y:\Digitization\Various /Max "C:\Program Files (x86)\Eu\NPP\Notepad++.Exe" -systemtray
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Microsoft 365 OutLook" Static Software Application.      *
+*                                                                        *
+**************************************************************************
+
+Start "OutLook" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\OutLook.Exe"
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Microsoft 365 Skype for Business"                        *
+* Static Software Application.                                           *
+*                                                                        *
+**************************************************************************
+
+Start "Skype" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\Lync.Exe"
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Google-Chrome" Web-Browser.                              *
+*                                                                        *
+**************************************************************************
+
+Start "Google-Chrome" /D "C:\Program Files (x86)\Google\Chrome\Application\" /Max "C:\Program Files (x86)\Google\Chrome\Application\Chrome.Exe"
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "FireFox" Web-Browser.                                    *
+*                                                                        *
+**************************************************************************
+
+Start "FireFox" /D Y:\Digitization\Programs\Mozilla_FireFox\ /Max "Y:\Digitization\Programs\Mozilla_FireFox\FireFox.Exe"
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Internet Explorer" Web-Browser.                          *
+*                                                                        *
+**************************************************************************
+
+Start "Internet Explorer" /D "C:\Program Files\Internet Explorer\" /Max "C:\Program Files\Internet Explorer\IExplore.Exe"
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "What Is Up?" Social-Media Network Client.                *
+*                                                                        *
+**************************************************************************
+
+Start "What Is Up?" /D M:\Desktop_Icons\ /Max M:\Desktop_Icons\WhatsAppSetup.Exe
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Green-Shot" Screen-Shooter.                              *
+*                                                                        *
+**************************************************************************
+
+Start "Green-Shot" /D M:\Desktop_Icons\Greenshot\ /Max M:\Desktop_Icons\Greenshot\Greenshot.exe
+
+
+**************************************************************************
+*                                                                        *
+* Moving the "OutLook" Desktop Icon in the Desktop Icons Folder.         *
+*                                                                        *
+**************************************************************************
+
+Move /Y "M:\OutLook.Lnk" "M:\Desktop_Icons\"
+
+        1 file(s) moved.
+
+**************************************************************************
+*                                                                        *
+* Waiting for one minute, without being able to skip the waiting time.   *
+*                                                                        *
+**************************************************************************
+
+TimeOut 60 /NoBreak
+
+
+Waiting for  0 seconds, press CTRL+C to quit ...
+
+**************************************************************************
+*                                                                        *
+* Moving the "What Is Up?" Desktop Icon in the Desktop Icons Folder.     *
+*                                                                        *
+**************************************************************************
+
+Move /Y "M:\WhatsApp.lnk" "M:\Desktop_Icons\"
+
+        1 file(s) moved.
+
+**************************************************************************
+*                                                                        *
+* Pausing in order to get the Software Results.                          *
+*                                                                        *
+**************************************************************************
+
+Pause
+
+Press any key to continue . . .
+
+
