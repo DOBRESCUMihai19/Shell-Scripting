@@ -4,7 +4,7 @@
 # 2. Remove the My Computer Desktop Icon from the Desktop View.
 # 3. Run this snippet.
 # 4. Observe how the My Computer Desktop Icon is produced on the Desktop View,
-#    with the name "V.D.I." and with a very beautiful Desktop Icon.
+#    with the name "Virtual_Desktop_Infrastructure" and with a very beautiful Desktop Icon.
 
 # Produce the My Computer Desktop Icon on the Desktop View.
 
@@ -36,7 +36,7 @@ Else
 
 # Rename the My Computer Desktop Icon.
 
-# Changes the My Computer desktop icon name from "This PC" to "V.D.I.".
+# Changes the My Computer desktop icon name from "This PC" to "Virtual_Desktop_Infrastructure".
 
 $My_Computer = 17
 
@@ -44,7 +44,7 @@ $Shell = New-Object -COMObject Shell.Application
 
 $NSComputer = $Shell.Namespace($My_Computer)
 
-$NSComputer.Self.Name = "V.D.I."
+$NSComputer.Self.Name = "Virtual_Desktop_Infrastructure"
 
 # Change the My Computer Desktop Icon, the Network Desktop Icon, the Control Panel Icon and the Recycle Bin Icons.
 

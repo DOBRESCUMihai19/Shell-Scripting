@@ -15,7 +15,13 @@ Set PowerShellScript=%DigitizationBase%GitHub\Shell-Scripting\Change_Desktop_Ico
 Set PowerShellCommand=^& {Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser}
 
 Set DesktopIconsFolder=Desktop_Icons
-Set DesktopBase=%folder_redir_path%\Desktop\
+Set DesktopBase=%folder_redir_path%\Desktop
+Set MappedDrive=M:
+
+Rem Substituting the base of the desktop with the "M:" Mapped Drive.
+Subst %MappedDrive% %DesktopBase%
+
+Set DesktopBase=%MappedDrive%\
 Set DesktopIconsBase=%DesktopBase%%DesktopIconsFolder%\
 
 Set TotalCommanderTitle=Total-Commander 64-Bit
@@ -64,6 +70,13 @@ Set WhatIsUpTitle=What Is Up?
 Set WhatIsUpBase=%DesktopIconsBase%
 Set WhatIsUpExecutableFileName=WhatsAppSetup.Exe
 Set WhatIsUpExecutableFilePath=%WhatIsUpBase%%WhatIsUpExecutableFileName%
+Set WhatIsUpShortcutFileName=WhatsApp.lnk
+Set WhatIsUpShortcutFilePath=%DesktopBase%%WhatIsUpShortcutFileName%
+
+Set GreenshotTitle=Green-Shot
+Set GreenshotBase=%DesktopIconsBase%Greenshot\
+Set GreenshotExecutableFileName=Greenshot.exe
+Set GreenshotExecutableFilePath=%GreenshotBase%%GreenshotExecutableFileName%
 
 Rem Changing the current directory to the local base installation of PowerShell.
 Echo **************************************************************************
@@ -203,10 +216,22 @@ Echo.
 Start "%WhatIsUpTitle%" /D %WhatIsUpBase% /Max %WhatIsUpExecutableFilePath%
 Echo.
 
-Rem Overwriting the "OutLook" Desktop Icon over the Start-Up Folder.
+Rem Starting the "Green-Shot" Screen-Shooter.
 Echo **************************************************************************
 Echo *                                                                        *
-Echo * Moving the "OutLook" Desktop Icon where it belongs.                    *
+Echo * Starting the "Green-Shot" Screen-Shooter.                              *
+Echo *                                                                        *
+Echo **************************************************************************
+Echo.
+Echo Start "%GreenshotTitle%" /D %GreenshotBase% /Max %GreenshotExecutableFilePath%
+Echo.
+Start "%GreenshotTitle%" /D %GreenshotBase% /Max %GreenshotExecutableFilePath%
+Echo.
+
+Rem Overwriting the "OutLook" Desktop Icon over the Desktop Icons Folder.
+Echo **************************************************************************
+Echo *                                                                        *
+Echo * Moving the "OutLook" Desktop Icon in the Desktop Icons Folder.         *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
@@ -215,7 +240,31 @@ Echo.
 Move /Y "%OutLookShortcutFilePath%" "%DesktopIconsBase%"
 Echo.
 
-Rem Just add a "Rem" command in front of the next "Pause" command line,
+Rem Giving the user one minute in order to set up the "What Is Up?" Program.
+Echo **************************************************************************
+Echo *                                                                        *
+Echo * Waiting for one minute, without being able to skip the waiting time.   *
+Echo *                                                                        *
+Echo **************************************************************************
+Echo.
+Echo TimeOut 60 /NoBreak
+Echo.
+TimeOut 60 /NoBreak
+Echo.
+
+Rem Overwriting the "What Is Up?" Desktop Icon over the Desktop Icons Folder.
+Echo **************************************************************************
+Echo *                                                                        *
+Echo * Moving the "What Is Up?" Desktop Icon in the Desktop Icons Folder.     *
+Echo *                                                                        *
+Echo **************************************************************************
+Echo.
+Echo Move /Y "%WhatIsUpShortcutFilePath%" "%DesktopIconsBase%"
+Echo.
+Move /Y "%WhatIsUpShortcutFilePath%" "%DesktopIconsBase%"
+Echo.
+
+Rem Just add a "Rem" command in front of the next "Pause" command,
 Rem for debugging purposes.
 Echo **************************************************************************
 Echo *                                                                        *
@@ -225,6 +274,6 @@ Echo **************************************************************************
 Echo.
 Echo Pause
 Echo.
-Rem Pause
+Pause
 Echo.
 
