@@ -1,5 +1,7 @@
 @Echo Off
-Rem Just add a "Rem" command in front of the previous line for debugging purposes.
+Rem Just add a "Rem" Command in front of the previous Command-Line,
+Rem in order to enable the debugging
+Rem by echoing each Command-Line of this Batch-File.
 
 Rem Setting the local variables up.
 Set DigitizationFolder=Digitization
@@ -65,6 +67,8 @@ Set InternetExplorerTitle=Internet Explorer
 Set InternetExplorerBase=%ProgramFiles%\Internet Explorer\
 Set InternetExplorerExecutableFileName=IExplore.Exe
 Set InternetExplorerExecutableFilePath=%InternetExplorerBase%%InternetExplorerExecutableFileName%
+Set InternetExplorerShortcutFileName=Internet Explorer.lnk
+Set InternetExplorerShortcutFilePath=%DesktopBase%%InternetExplorerShortcutFileName%
 
 Set WhatIsUpTitle=What Is Up?
 Set WhatIsUpBase=%DesktopIconsBase%
@@ -113,11 +117,6 @@ Echo %PowerShellExecutableFilePath% %PowerShellScript%
 Echo.
 %PowerShellExecutableFilePath% %PowerShellScript%
 Echo.
-
-Rem Restarting the "Windows Explorer" Process *should* display the newer Control Panel Desktop Icon.
-Rem It *should*, but it does not.
-Rem TaskKill /F /IM %ExplorerFileName%
-Rem Start %ExplorerExecutableFilePath%
 
 Rem Starting the "Total-Commander" 64-Bit Static Software Application.
 Echo **************************************************************************
@@ -223,9 +222,9 @@ Echo * Starting the "Green-Shot" Screen-Shooter.                              *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo Start "%GreenshotTitle%" /D %GreenshotBase% /Max %GreenshotExecutableFilePath%
+Echo Start "%GreenshotTitle%" /D %GreenshotBase% /Min %GreenshotExecutableFilePath%
 Echo.
-Start "%GreenshotTitle%" /D %GreenshotBase% /Max %GreenshotExecutableFilePath%
+Start "%GreenshotTitle%" /D %GreenshotBase% /Min %GreenshotExecutableFilePath%
 Echo.
 
 Rem Overwriting the "OutLook" Desktop Icon over the Desktop Icons Folder.
@@ -240,16 +239,30 @@ Echo.
 Move /Y "%OutLookShortcutFilePath%" "%DesktopIconsBase%"
 Echo.
 
-Rem Giving the user one minute in order to set up the "What Is Up?" Program.
+Rem Overwriting the "Internet Explorer" Desktop Icon
+Rem over the Desktop Icons Folder.
 Echo **************************************************************************
 Echo *                                                                        *
-Echo * Waiting for one minute, without being able to skip the waiting time.   *
+Echo * Moving the "Internet Explorer" Desktop Icon                            *
+Echo * in the Desktop Icons Folder.                                           *
 Echo *                                                                        *
 Echo **************************************************************************
 Echo.
-Echo TimeOut 60 /NoBreak
+Echo Move /Y "%InternetExplorerShortcutFilePath%" "%DesktopIconsBase%"
 Echo.
-TimeOut 60 /NoBreak
+Move /Y "%InternetExplorerShortcutFilePath%" "%DesktopIconsBase%"
+Echo.
+
+Rem Giving the user two minutes in order to set up the "What Is Up?" Program.
+Echo **************************************************************************
+Echo *                                                                        *
+Echo * Waiting for two minutes, without being able to skip the waiting time.  *
+Echo *                                                                        *
+Echo **************************************************************************
+Echo.
+Echo TimeOut 120 /NoBreak
+Echo.
+TimeOut 120 /NoBreak
 Echo.
 
 Rem Overwriting the "What Is Up?" Desktop Icon over the Desktop Icons Folder.
@@ -264,16 +277,52 @@ Echo.
 Move /Y "%WhatIsUpShortcutFilePath%" "%DesktopIconsBase%"
 Echo.
 
-Rem Just add a "Rem" command in front of the next "Pause" command,
-Rem for debugging purposes.
-Echo **************************************************************************
-Echo *                                                                        *
-Echo * Pausing in order to get the Software Results.                          *
-Echo *                                                                        *
-Echo **************************************************************************
-Echo.
-Echo Pause
-Echo.
-Pause
-Echo.
+Rem Restarting the "Microsoft" "Windows Explorer" Process
+Rem *should* display the newer Control Panel Desktop Icon.
+Rem It *should*, but it does not, for the moment.
+Rem Echo **************************************************************************
+Rem Echo *                                                                        *
+Rem Echo * Killing the "Microsoft" "Windows Explorer" Static Software Application.*
+Rem Echo *                                                                        *
+Rem Echo **************************************************************************
+Rem Echo.
+Rem Echo TaskKill /F /IM %ExplorerExecutableFileName%
+Rem Echo.
+Rem TaskKill /F /IM %ExplorerExecutableFileName%
+Rem Echo.
+
+Rem Restarting the "Microsoft" "Windows Explorer" Static Software Application.
+Rem Echo **************************************************************************
+Rem Echo *                                                                        *
+Rem Echo * Restarting the "Microsoft" "Windows Explorer"                          *
+Rem Echo * Static Software Application.                                           *
+Rem Echo *                                                                        *
+Rem Echo **************************************************************************
+Rem Echo.
+Rem Echo Start %ExplorerExecutableFilePath%
+Rem Echo.
+Rem Start %ExplorerExecutableFilePath%
+Rem Echo.
+
+Rem Not only that we cannot see the "Control Panel" repainted with its new
+Rem Desktop Icon after the restart of the "Microsoft" "Windows Explorer"
+Rem Static Software Application, but also we cannot see the "Notepad++"
+Rem Little Icon in the System Tray after its restart.
+
+Rem Just add a "Rem" Command in front of the next "Pause" Command-Line,
+Rem in order to lose the Textual Out-Put of this Batch-File
+Rem and to speed up the starting process.
+Rem Echo **************************************************************************
+Rem Echo *                                                                        *
+Rem Echo * Pausing in order to get the Software Results.                          *
+Rem Echo *                                                                        *
+Rem Echo **************************************************************************
+Rem Echo.
+Rem Echo Pause
+Rem Echo.
+Rem Pause
+Rem Echo.
+
+Rem "Notepad++" has to be sometimes manually restarted, when it is
+Rem waiting in the "Not responding" state.
 
