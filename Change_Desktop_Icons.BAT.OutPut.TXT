@@ -1,11 +1,6 @@
 **************************************************************************
 *                                                                        *
-* Changing the current local directory to the "PowerShell" installation. *
-*                                                                        *
-**************************************************************************
-
-ChDir C:\WINDOWS\System32\WindowsPowerShell\v1.0\
-
+* Changing the current local directory to the "PowerShell" installation. *                                            *                                                                        *                                            **************************************************************************                                                                                                                                                                  ChDir C:\WINDOWS\System32\WindowsPowerShell\v1.0\                                                                     
 
 **************************************************************************
 *                                                                        *
@@ -31,7 +26,7 @@ C:\WINDOWS\System32\WindowsPowerShell\v1.0\PowerShell.Exe Y:\Digitization\GitHub
 *                                                                        *
 **************************************************************************
 
-Start "Total-Commander 64-Bit" /D M:\Desktop_Icons\Total_Commander\ /Max M:\Desktop_Icons\Total_Commander\TotalCmd64.Exe /i=Y:\WinCmd.Ini
+Start "Total-Commander 64-Bit" /D M:\Desktop_Icons\Total_Commander\ /Min M:\Desktop_Icons\Total_Commander\TotalCmd64.Exe /i=Y:\WinCmd.Ini
 
 
 **************************************************************************
@@ -40,7 +35,7 @@ Start "Total-Commander 64-Bit" /D M:\Desktop_Icons\Total_Commander\ /Max M:\Desk
 *                                                                        *
 **************************************************************************
 
-Start "Notepad++" /D Y:\Digitization\Various /Max "C:\Program Files (x86)\Eu\NPP\Notepad++.Exe" -systemtray
+Start "Notepad++" /D Y:\Digitization\Various /Min "C:\Program Files (x86)\Eu\NPP\Notepad++.Exe" -systemtray
 
 
 **************************************************************************
@@ -49,7 +44,7 @@ Start "Notepad++" /D Y:\Digitization\Various /Max "C:\Program Files (x86)\Eu\NPP
 *                                                                        *
 **************************************************************************
 
-Start "OutLook" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\OutLook.Exe"
+Start "OutLook" /Min "C:\Program Files (x86)\Microsoft Office\Root\Office16\OutLook.Exe"
 
 
 **************************************************************************
@@ -59,7 +54,7 @@ Start "OutLook" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\OutL
 *                                                                        *
 **************************************************************************
 
-Start "Skype" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\Lync.Exe"
+Start "Skype" /Min "C:\Program Files (x86)\Microsoft Office\Root\Office16\Lync.Exe"
 
 
 **************************************************************************
@@ -68,7 +63,7 @@ Start "Skype" /Max "C:\Program Files (x86)\Microsoft Office\Root\Office16\Lync.E
 *                                                                        *
 **************************************************************************
 
-Start "Google-Chrome" /D "C:\Program Files (x86)\Google\Chrome\Application\" /Max "C:\Program Files (x86)\Google\Chrome\Application\Chrome.Exe"
+Start "Google-Chrome" /D "C:\Program Files (x86)\Google\Chrome\Application\" /Min "C:\Program Files (x86)\Google\Chrome\Application\Chrome.Exe"
 
 
 **************************************************************************
@@ -77,7 +72,7 @@ Start "Google-Chrome" /D "C:\Program Files (x86)\Google\Chrome\Application\" /Ma
 *                                                                        *
 **************************************************************************
 
-Start "FireFox" /D Y:\Digitization\Programs\Mozilla_FireFox\ /Max "Y:\Digitization\Programs\Mozilla_FireFox\FireFox.Exe"
+Start "FireFox" /D Y:\Digitization\Programs\Mozilla_FireFox\ /Min "Y:\Digitization\Programs\Mozilla_FireFox\FireFox.Exe"
 
 
 **************************************************************************
@@ -86,7 +81,7 @@ Start "FireFox" /D Y:\Digitization\Programs\Mozilla_FireFox\ /Max "Y:\Digitizati
 *                                                                        *
 **************************************************************************
 
-Start "Internet Explorer" /D "C:\Program Files\Internet Explorer\" /Max "C:\Program Files\Internet Explorer\IExplore.Exe"
+Start "Internet Explorer" /D "C:\Program Files\Internet Explorer\" /Min "C:\Program Files\Internet Explorer\IExplore.Exe"
 
 
 **************************************************************************
@@ -95,7 +90,16 @@ Start "Internet Explorer" /D "C:\Program Files\Internet Explorer\" /Max "C:\Prog
 *                                                                        *
 **************************************************************************
 
-Start "What Is Up?" /D M:\Desktop_Icons\ /Max M:\Desktop_Icons\WhatsAppSetup.Exe
+Start "What Is Up?" /D Y:\Digitization\Kits\Social-Media\WhatsApp\ /Min Y:\Digitization\Kits\Social-Media\WhatsApp\WhatsAppSetup.Exe
+
+
+**************************************************************************
+*                                                                        *
+* Starting the "Telegram" Social-Media Network Client.                   *
+*                                                                        *
+**************************************************************************
+
+Start "Telegram" /D Y:\Digitization\Kits\Social-Media\Telegram\ /Min Y:\Digitization\Kits\Social-Media\Telegram\tsetup-x64.2.7.4.exe
 
 
 **************************************************************************
@@ -104,7 +108,7 @@ Start "What Is Up?" /D M:\Desktop_Icons\ /Max M:\Desktop_Icons\WhatsAppSetup.Exe
 *                                                                        *
 **************************************************************************
 
-Start "Green-Shot" /D M:\Desktop_Icons\Greenshot\ /Max M:\Desktop_Icons\Greenshot\Greenshot.exe
+Start "Green-Shot" /D M:\Desktop_Icons\Greenshot\ /Min M:\Desktop_Icons\Greenshot\Greenshot.exe
 
 
 **************************************************************************
@@ -119,14 +123,25 @@ Move /Y "M:\OutLook.Lnk" "M:\Desktop_Icons\"
 
 **************************************************************************
 *                                                                        *
-* Waiting for one minute, without being able to skip the waiting time.   *
+* Moving the "Internet Explorer" Desktop Icon                            *
+* in the Desktop Icons Folder.                                           *
 *                                                                        *
 **************************************************************************
 
-TimeOut 60 /NoBreak
+Move /Y "M:\Internet Explorer.lnk" "M:\Desktop_Icons\"
+
+        1 file(s) moved.
+
+**************************************************************************
+*                                                                        *
+* Waiting for ten minutes, without being able to skip the waiting time.  *
+*                                                                        *
+**************************************************************************
+
+TimeOut 600 /NoBreak
 
 
-Waiting for  0 seconds, press CTRL+C to quit ...
+Waiting for   0 seconds, press CTRL+C to quit ...
 
 **************************************************************************
 *                                                                        *
@@ -140,6 +155,16 @@ Move /Y "M:\WhatsApp.lnk" "M:\Desktop_Icons\"
 
 **************************************************************************
 *                                                                        *
+* Moving the "Telegram" Desktop Icon in the Desktop Icons Folder.        *
+*                                                                        *
+**************************************************************************
+
+Move /Y "M:\Telegram.lnk" "M:\Desktop_Icons\"
+
+        1 file(s) moved.
+
+**************************************************************************
+*                                                                        *
 * Pausing in order to get the Software Results.                          *
 *                                                                        *
 **************************************************************************
@@ -147,5 +172,3 @@ Move /Y "M:\WhatsApp.lnk" "M:\Desktop_Icons\"
 Pause
 
 Press any key to continue . . .
-
-
