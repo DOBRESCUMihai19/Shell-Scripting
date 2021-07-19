@@ -1,153 +1,105 @@
-﻿# How to test:
-#
-# 1. Rename the My Computer Desktop Icon to "Fifi".
-# 2. Remove the My Computer Desktop Icon from the Desktop View.
-# 3. Run this snippet.
-# 4. Observe how the My Computer Desktop Icon is produced on the Desktop View,
-#    with the name "Virtual_Desktop_Infrastructure" and with a very beautiful Desktop Icon.
+﻿##########################################################################
+#                                                                        #
+# How to test:                                                           #
+#                                                                        #
+# 1. Rename the My Computer Desktop Icon to "Fifi".                      #
+# 2. Remove the My Computer Desktop Icon from the Desktop View.          #
+# 3. Run this snippet.                                                   #
+# 4. Observe how the My Computer Desktop Icon                            #
+#    is produced on the Desktop View,                                    #
+#    with the name "Virtual_Desktop_Infrastructure"                      #
+#    and with a very beautiful Desktop Icon.                             #
+#                                                                        #
+# Variables.                                                             #
+#                                                                        #
+# Registry Paths.                                                        #
+#                                                                        #
+##########################################################################
 
-# Produce the My Computer Desktop Icon on the Desktop View.
+$RegPath_NewStartPanel =                                                 `
+    'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\'            `
+  + 'CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel'
 
-# HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel\
-# {20D04FE0-3AEA-1069-A2D8-08002B30309D}
-# 0 = show
-# 1 = hide
+$RegPath_MyComputer =                                                    `
+    'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\'            `
+  + 'CurrentVersion\Explorer\CLSID\'                                     `
+  + '{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon'
 
-$Path = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel"
+$RegPath_Network =                                                       `
+    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\'            `
+  + 'CurrentVersion\Explorer\CLSID\'                                     `
+  + '{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon'
 
-$Name = "{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
+$RegPath_Control_Panel =                                                 `
+    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\'            `
+  + 'CurrentVersion\Explorer\CLSID\'                                     `
+  + '{26EE0668-A00A-44D7-9371-BEB064C98683}\DefaultIcon'
 
-$Exist = "Get-ItemProperty -Path $Path -Name $Name"
+$RegPath_Recycle_Bin =                                                   `
+    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\'            `
+  + 'CurrentVersion\Explorer\CLSID\'                                     `
+  + '{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon'
 
-if ($Exist)
-{
-    Set-ItemProperty     `
-        -Path  $Path     `
-        -Name  $Name     `
-        -Value 0
-}
-Else
-{
-    New-ItemProperty     `
-        -Path  $Path     `
-        -Name  $Name     `
-        -Value 0
-}
+$RegPath_Windows_Explorer =                                              `
+    'Registry::HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\'   `
+  + 'Explorer'
 
-# Rename the My Computer Desktop Icon.
+$RegPath_PushNotifications =                                             `
+    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\'            `
+  + 'CurrentVersion\PushNotifications'
 
-# Changes the My Computer desktop icon name from "This PC" to "Virtual_Desktop_Infrastructure".
+##########################################################################
+#                                                                        #
+# Icon Paths.                                                            #
+#                                                                        #
+##########################################################################
 
-$My_Computer = 17
-
-$Shell = New-Object -COMObject Shell.Application
-
-$NSComputer = $Shell.Namespace($My_Computer)
-
-$NSComputer.Self.Name = "Virtual_Desktop_Infrastructure"
-
-# Change the My Computer Desktop Icon, the Network Desktop Icon, the Control Panel Icon and the Recycle Bin Icons.
-
-$RegPath_MyComputer =                                                                                                                         `
-    'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon'
-
-$RegPath_Network =                                                                                                                            `
-    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon'
-
-$RegPath_Control_Panel =                                                                                                                      `
-    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{26EE0668-A00A-44D7-9371-BEB064C98683}\DefaultIcon'
-
-$RegPath_Recycle_Bin =                                                                                                                        `
-    'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon'
-
-$Icon_MyComputer =                                                           `
+$Icon_MyComputer =                                                       `
     'Y:\Digitization\Icons\Robsonbillponte-Happy-Holidays-Pictures.ICO'
 
-$Icon_Network =                                                              `
-    'Y:\Digitization\Icons\Aha-Soft-Free-Global-Security-Global-Network.ICO'
+$Icon_Network =                                                          `
+    'Y:\Digitization\Icons\'                                             `
+  + 'Aha-Soft-Free-Global-Security-Global-Network.ICO'
 
-$Icon_Control_Panel =                                                        `
+$Icon_Control_Panel =                                                    `
     'Y:\Digitization\Icons\Aroche-Delta-Control-Panel.ICO'
 
-$Icon_Recycle_Bin_Empty =                                                    `
-    'Y:\Digitization\Icons\Iconshock-Vista-General-Trash.ICO'
+$Icon_Recycle_Bin_Empty =                                                `
+  'Y:\Digitization\Icons\Iconshock-Vista-General-Trash.ICO'
 
-$Icon_Recycle_Bin_Full =                                                     `
+$Icon_Recycle_Bin_Full =                                                 `
     'Y:\Digitization\Icons\Custo-Man-Christmas-Trash.ICO'
 
-if (!(Test-Path -Path $RegPath_MyComputer))
-{
-    $null = New-Item                        `
-                -Path   $RegPath_MyComputer `
-                -Force
-}
+##########################################################################
+#                                                                        #
+# Names.                                                                 #
+#                                                                        #
+##########################################################################
 
-if (!(Test-Path -Path $RegPath_Network))
-{
-    $null = New-Item                     `
-                -Path   $RegPath_Network `
-                -Force
-}
+$DisableNotificationCenter_Name =                                        `
+    'DisableNotificationCenter'
 
-if (!(Test-Path -Path $RegPath_Control_Panel))
-{
-    $null = New-Item                           `
-                -Path   $RegPath_Control_Panel `
-                -Force
-}
+$ToastEnabled_Name =                                                     `
+    'ToastEnabled'
 
-if (!(Test-Path -Path $RegPath_Recycle_Bin))
-{
-    $null = New-Item                           `
-                -Path   $RegPath_Recycle_Bin   `
-                -Force
-}
+$NewStartPanel_Name =                                                    `
+    '{20D04FE0-3AEA-1069-A2D8-08002B30309D}'
 
-Set-ItemProperty               `
-    -Path  $RegPath_MyComputer `
-    -Name  '(Default)'         `
-    -Value $Icon_MyComputer    `
-    -Type  ExpandString        `
-    -Force
+$Computer_Name =                                                         `
+    'Virtual_Desktop_Infrastructure'
 
-Set-ItemProperty               `
-    -Path  $RegPath_Network    `
-    -Name  '(Default)'         `
-    -Value $Icon_Network       `
-    -Type  ExpandString        `
-    -Force
+$Default_Name =                                                          `
+    '(Default)'
 
-Set-ItemProperty                  `
-    -Path  $RegPath_Control_Panel `
-    -Name  '(Default)'            `
-    -Value $Icon_Control_Panel    `
-    -Type  ExpandString           `
-    -Force
+$Empty_Name =                                                            `
+    'empty'
 
-Set-ItemProperty                      `
-    -Path  $RegPath_Recycle_Bin       `
-    -Name  '(Default)'                `
-    -Value $Icon_Recycle_Bin_Empty    `
-    -Type  ExpandString               `
-    -Force
+$Full_Name =                                                             `
+    'full'
 
-Set-ItemProperty                      `
-    -Path  $RegPath_Recycle_Bin       `
-    -Name  'empty'                    `
-    -Value $Icon_Recycle_Bin_Empty    `
-    -Type  ExpandString               `
-    -Force
-
-Set-ItemProperty                      `
-    -Path  $RegPath_Recycle_Bin       `
-    -Name  'full'                     `
-    -Value $Icon_Recycle_Bin_Full     `
-    -Type  ExpandString               `
-    -Force
-
-# Refresh the Desktop View.
-
-# Refresh Desktop Ability.
+$Exist =                                                                 `
+    "Get-ItemProperty -Path $RegPath_NewStartPanel"                      `
+  + "-Name $NewStartPanel_Name"
 
 $Definition = @'
 
@@ -169,14 +121,184 @@ $Definition = @'
     }
 '@
 
-Add-Type                          `
-    -MemberDefinition $Definition `
-    -Namespace        WinAPI      `
+##########################################################################
+#                                                                        #
+# Constants.                                                             #
+#                                                                        #
+##########################################################################
+
+$Zero        =  0
+
+$One         =  1
+
+$My_Computer = 17
+
+##########################################################################
+#                                                                        #
+# Code.                                                                  #
+#                                                                        #
+# Renames the My Computer Desktop Icon.                                  #
+#                                                                        #
+# Changes the My Computer Desktop Icon Name                              #
+# from "This PC"                                                         #
+# to "Virtual_Desktop_Infrastructure".                                   #
+#                                                                        #
+##########################################################################
+
+$Shell                = New-Object -COMObject Shell.Application
+
+$NSComputer           = $Shell.Namespace($My_Computer)
+
+$NSComputer.Self.Name = $Computer_Name
+
+##########################################################################
+#                                                                        #
+# Change the My Computer Desktop Icon,                                   #
+#        the Network Desktop Icon,                                       #
+#        the Control Panel Icon                                          #
+#    and the Recycle Bin Icons.                                          #
+#                                                                        #
+# New-Item's.                                                            #
+#                                                                        #
+##########################################################################
+
+if (!(Test-Path -Path $RegPath_MyComputer))
+{
+    $null = New-Item                                                     `
+                -Path   $RegPath_MyComputer                              `
+                -Force
+}
+
+if (!(Test-Path -Path $RegPath_Network))
+{
+    $null = New-Item                                                     `
+                -Path   $RegPath_Network                                 `
+                -Force
+}
+
+if (!(Test-Path -Path $RegPath_Control_Panel))
+{
+    $null = New-Item                                                     `
+                -Path   $RegPath_Control_Panel                           `
+                -Force
+}
+
+if (!(Test-Path -Path $RegPath_Recycle_Bin))
+{
+    $null = New-Item                                                     `
+                -Path   $RegPath_Recycle_Bin                             `
+                -Force
+}
+
+##########################################################################
+#                                                                        #
+# Set-ItemProperty's and New-ItemProperty's.                             #
+#                                                                        #
+# Produce the My Computer Desktop Icon on the Desktop View.              #
+#                                                                        #
+# HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer   #
+# \HideDesktopIcons\NewStartPanel\                                       #
+# {20D04FE0-3AEA-1069-A2D8-08002B30309D}                                 #
+# 0 = show                                                               #
+# 1 = hide                                                               #
+#                                                                        #
+##########################################################################
+
+if ($Exist)
+{
+    Set-ItemProperty                                                     `
+        -Path  $RegPath_NewStartPanel                                    `
+        -Name  $NewStartPanel_Name                                       `
+        -Value $Zero
+}
+Else
+{
+    New-ItemProperty                                                     `
+        -Path  $RegPath_NewStartPanel                                    `
+        -Name  $NewStartPanel_Name                                       `
+        -Value $Zero
+}
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_MyComputer                                           `
+    -Name  $Default_Name                                                 `
+    -Value $Icon_MyComputer                                              `
+    -Type  ExpandString                                                  `
+    -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_Network                                              `
+    -Name  $Default_Name                                                 `
+    -Value $Icon_Network                                                 `
+    -Type  ExpandString                                                  `
+    -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_Control_Panel                                        `
+    -Name  $Default_Name                                                 `
+    -Value $Icon_Control_Panel                                           `
+    -Type  ExpandString                                                  `
+    -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_Recycle_Bin                                          `
+    -Name  $Default_Name                                                 `
+    -Value $Icon_Recycle_Bin_Empty                                       `
+    -Type  ExpandString                                                  `
+    -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_Recycle_Bin                                          `
+    -Name  $Empty_Name                                                   `
+    -Value $Icon_Recycle_Bin_Empty                                       `
+    -Type  ExpandString                                                  `
+    -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_Recycle_Bin                                          `
+    -Name  $Full_Name                                                    `
+    -Value $Icon_Recycle_Bin_Full                                        `
+    -Type  ExpandString                                                  `
+    -Force
+
+##########################################################################
+#                                                                        #
+# The following "Set-ItemProperty" Command-Let is producing              #
+# the "Requested registry access is not allowed." Error-Message.         #
+#                                                                        #
+# We do not have Administrative-Privileges                               #
+# inside the Virtual-Desktop-Infrastructure.                             #
+#                                                                        #
+##########################################################################
+
+# Set-ItemProperty                                                       `
+#     -Path  $RegPath_Windows_Explorer                                   `
+#     -Name  $DisableNotificationCenter_Name                             `
+#     -Value $One                                                        `
+#     -Type  DWord                                                       `
+#     -Force
+
+Set-ItemProperty                                                         `
+    -Path  $RegPath_PushNotifications                                    `
+    -Name  $ToastEnabled_Name                                            `
+    -Value $Zero                                                         `
+    -Type  DWord                                                         `
+    -Force
+
+##########################################################################
+#                                                                        #
+# Refresh the Desktop View.                                              #
+#                                                                        #
+# We are enforcing twice the Refresh Procedure.                          #
+# However, the Control Panel Desktop Icon does not want to change itself #
+# into the new image.                                                    #
+#                                                                        #
+##########################################################################
+
+Add-Type                                                                 `
+    -MemberDefinition $Definition                                        `
+    -Namespace        WinAPI                                             `
     -Name             Explorer
 
-# Refresh the Desktop View.
 [WinAPI.Explorer]::Refresh()
-
-# Reinforcing again the Refresh Procedure.
-# However, the Control Panel Desktop Icon does not want to change itself to the new image.
 [WinAPI.Explorer]::Refresh()
