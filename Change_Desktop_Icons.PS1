@@ -48,6 +48,16 @@ $RegPath_PushNotifications =                                             `
     'Registry::HKEY_CURRENT_USER\Software\Microsoft\Windows\'            `
   + 'CurrentVersion\PushNotifications'
 
+$RegPath_SearchBoxTaskbarMode =                                          `
+    'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\'            `
+  + 'CurrentVersion\Search\'
+
+$RegPath_SoundSchemes =                                                  `
+    'Registry::HKEY_CURRENT_USER\AppEvents\Schemes'
+
+$RegPath_SoundSchemesApps =                                              `
+    'Registry::HKEY_CURRENT_USER\AppEvents\Schemes\Apps'
+
 ##########################################################################
 #                                                                        #
 # Icon Paths.                                                            #
@@ -97,6 +107,9 @@ $Empty_Name =                                                            `
 $Full_Name =                                                             `
     'full'
 
+$SearchBoxTaskbarMode_Name =
+    'SearchBoxTaskbarMode'
+
 $Exist =                                                                 `
     "Get-ItemProperty -Path $RegPath_NewStartPanel"                      `
   + "-Name $NewStartPanel_Name"
@@ -120,6 +133,30 @@ $Definition = @'
         , IntPtr.Zero);
     }
 '@
+
+$KeyName_SoundSchemes       = '(Default)'
+
+$SetValue_SoundSchemes      = '.None'
+
+$Declaration_SoundSchemes   = "`nSetting Sound Schemes to 'No Sound'."
+
+$Declaration_FolderCreation = "Creating Folder."
+
+$Declaration_Existence      = "The Registry Key Already Exists."
+
+$Declaration_Change         = "Changing Key Value."
+
+$Declaration_Change_Success = "The Registry Key Value Changed Successfully."
+
+$Declaration_KeyCreation    = "Creating Registry Key."
+
+$Declaration_KeySuccess     = "The Registry Key Created Successfully."
+
+$Name_Current               = ".Current"
+
+$Name_Default               = "(Default)"
+
+$Name_Empty                 = ""
 
 ##########################################################################
 #                                                                        #
@@ -162,28 +199,28 @@ $NSComputer.Self.Name = $Computer_Name
 #                                                                        #
 ##########################################################################
 
-if (!(Test-Path -Path $RegPath_MyComputer))
+If (!(Test-Path -Path $RegPath_MyComputer))
 {
     $null = New-Item                                                     `
                 -Path   $RegPath_MyComputer                              `
                 -Force
 }
 
-if (!(Test-Path -Path $RegPath_Network))
+If (!(Test-Path -Path $RegPath_Network))
 {
     $null = New-Item                                                     `
                 -Path   $RegPath_Network                                 `
                 -Force
 }
 
-if (!(Test-Path -Path $RegPath_Control_Panel))
+If (!(Test-Path -Path $RegPath_Control_Panel))
 {
     $null = New-Item                                                     `
                 -Path   $RegPath_Control_Panel                           `
                 -Force
 }
 
-if (!(Test-Path -Path $RegPath_Recycle_Bin))
+If (!(Test-Path -Path $RegPath_Recycle_Bin))
 {
     $null = New-Item                                                     `
                 -Path   $RegPath_Recycle_Bin                             `
@@ -204,7 +241,7 @@ if (!(Test-Path -Path $RegPath_Recycle_Bin))
 #                                                                        #
 ##########################################################################
 
-if ($Exist)
+If ($Exist)
 {
     Set-ItemProperty                                                     `
         -Path  $RegPath_NewStartPanel                                    `
@@ -285,11 +322,96 @@ Set-ItemProperty                                                         `
     -Type  DWord                                                         `
     -Force
 
+Set-ItemProperty                                                         `
+    -Path  $RegPath_SearchBoxTaskbarMode                                 `
+    -Name  $SearchBoxTaskbarMode_Name                                    `
+    -Value $Zero                                                         `
+    -Type  DWord                                                         `
+    -Force
+
+##########################################################################
+#                                                                        #
+# Set Sound Schemes to no sound.                                         #
+#                                                                        #
+##########################################################################
+
+Write-Host $Declaration_SoundSchemes                                     `
+           -ForeGroundColor Gray
+
+$TestPath = Test-Path $RegPath_SoundSchemes
+
+If (-Not($TestPath -Eq $True))
+{
+    Write-Host $Declaration_FolderCreation                               `
+               -ForeGroundColor Gray
+
+    New-Item $RegPath_SoundSchemes                                       `
+             -Force
+}
+
+If (Get-ItemProperty -Path $RegPath_SoundSchemes                         `
+                     -Name $KeyName_SoundSchemes                         `
+                     -EA   SilentlyContinue)
+{
+    $KeyValue = (Get-ItemProperty                                        `
+                    -Path $RegPath_SoundSchemes).$KeyName_SoundSchemes
+
+    If ($KeyValue -Eq $SetValue_SoundSchemes)
+    {
+ 
+        Write-Host $Declaration_Existence                                `
+                   -ForeGroundColor Green
+    }
+    Else
+    {
+         Write-Host $Declaration_Change                                  `
+                    -ForeGroundColor Gray
+  
+         # Set 'No Sound' Schemes.
+         New-ItemProperty -Path  $RegPath_SoundSchemes                   `
+                          -Name  $KeyName_SoundSchemes                   `
+                          -Value $SetValue_SoundSchemes                  `
+                          -Force
+
+         # Apply 'No Sound' Schemes.
+         Get-ChildItem    -Path  $RegPath_SoundSchemesApps               `
+                        | Get-ChildItem                                  `
+                        | Get-ChildItem                                  `
+                        | Where-Object                                   `
+                          { $_.PSChildName -Eq    $Name_Current }        `
+                        | Set-ItemProperty -Name  $Name_Default          `
+                                           -Value $Name_Empty
+ 
+         Write-Host $Declaration_Change_Success                          `
+                    -ForeGroundColor Green
+    }
+}
+Else
+{
+    Write-Host $Declaration_KeyCreation                                  `
+               -ForeGroundColor Gray
+
+    New-ItemProperty -Path  $RegPath_SoundSchemes                        `
+                     -Name  $KeyName_SoundSchemes                        `
+                     -Value $SetValue_SoundSchemes                       `
+                     -Force
+
+    Get-ChildItem    -Path  $RegPath_SoundSchemesApps                    `
+                     | Get-ChildItem                                     `
+                     | Get-ChildItem                                     `
+                     | Where-Object { $_.PSChildName -Eq $Name_Current } `
+                     | Set-ItemProperty -Name  $Name_Default             `
+                                        -Value $Name_Empty
+
+    Write-Host $Declaration_KeySuccess                                   `
+               -ForeGroundColor Green
+}
+
 ##########################################################################
 #                                                                        #
 # Refresh the Desktop View.                                              #
 #                                                                        #
-# We are enforcing twice the Refresh Procedure.                          #
+# We are enforcing the Refresh Procedure.                                #
 # However, the Control Panel Desktop Icon does not want to change itself #
 # into the new image.                                                    #
 #                                                                        #
@@ -300,5 +422,4 @@ Add-Type                                                                 `
     -Namespace        WinAPI                                             `
     -Name             Explorer
 
-[WinAPI.Explorer]::Refresh()
 [WinAPI.Explorer]::Refresh()
