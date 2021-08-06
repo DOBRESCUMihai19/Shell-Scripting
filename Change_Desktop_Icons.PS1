@@ -1,14 +1,13 @@
 ﻿##########################################################################
 #                                                                        #
-# How to test:                                                           #
+# Main Functionalities:                                                  #
 #                                                                        #
-# 1. Rename the My Computer Desktop Icon to "Fifi".                      #
-# 2. Remove the My Computer Desktop Icon from the Desktop View.          #
-# 3. Run this snippet.                                                   #
-# 4. Observe how the My Computer Desktop Icon                            #
-#    is produced on the Desktop View,                                    #
-#    with the name "Virtual_Desktop_Infrastructure"                      #
-#    and with a very beautiful Desktop Icon.                             #
+# 1. Produces the "My Computer" Desktop Icon on the Desktop View.        #
+# 2. Changes the "My Computer" Name to "Virtual_Desktop_Infrastructure". #
+# 3. Changes the "My Computer" Desktop Icon and a few more.              #
+# 4. Changes the Sounds Scheme to "No Sounds".                           #
+# 5. Removes the "Search" Icon from the Task-Bar.                        #
+# 6. Disables the notifications (not working yet).                       #
 #                                                                        #
 # Variables.                                                             #
 #                                                                        #
@@ -160,7 +159,7 @@ $Name_Empty                 = ""
 
 ##########################################################################
 #                                                                        #
-# Constants.                                                             #
+# Numbers.                                                               #
 #                                                                        #
 ##########################################################################
 
@@ -172,7 +171,7 @@ $My_Computer = 17
 
 ##########################################################################
 #                                                                        #
-# Code.                                                                  #
+# Source Code.                                                           #
 #                                                                        #
 # Renames the My Computer Desktop Icon.                                  #
 #                                                                        #

@@ -50,7 +50,7 @@ Start      "Notepad++"                                              ^
 *********************************************************************
 
 Start      "OutLook"                                                ^
-      /Min                                                         ^
+      /Min                                                          ^
 "C:\Program Files (x86)\Microsoft Office\Root\Office16\OutLook.Exe"
 
 
@@ -199,9 +199,9 @@ Move /Y                                                             ^
         1 file(s) moved.                                                                                                                                                                                                                    *********************************************************************                                                 *                                                                   *                                                 * Disabling the notifications.                                      *                                                 *                                                                   *
 * Reg Add                                                          ^*
 *"HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications"^*
-*       /v ToastEnabled                                          ^ *
-*       /t REG_DWORD                                             ^ *
-*       /d 0                                                      ^ *                                                 *       /f                                                          *                                                 *                                                                   *                                                 *********************************************************************                                                 The operation completed successfully.                                                                                 *********************************************************************
+*       /v ToastEnabled                                            ^ *
+*       /t REG_DWORD                                                ^*
+*       /d 0                                                        ^*                                                *       /f                                                          *                                                 *                                                                   *                                                 *********************************************************************                                                 The operation completed successfully.                                                                                 *********************************************************************
 *                                                                   *
 * Changing the current local directory to the "PowerShell"          *
 * installation.                                                     *

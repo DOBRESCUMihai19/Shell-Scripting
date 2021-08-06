@@ -612,9 +612,9 @@ Echo * Disabling the notifications.                                      *
 Echo *                                                                   *
 Echo * Reg Add                                                          ^^*
 Echo *%NotificationsPath%^^*
-Echo *       /v %NotificationsValue%                                            ^^ *
-Echo *       /t %NotificationsType%                                                ^^*
-Echo *       /d %NotificationsNumber%                                                        ^^*
+Echo *       /v %NotificationsValue%                                            ^^*
+Echo *       /t %NotificationsType%                                               ^^*
+Echo *       /d %NotificationsNumber%                                                       ^^*
 Echo *       /f                                                          *
 Echo *                                                                   *
 Echo *********************************************************************
