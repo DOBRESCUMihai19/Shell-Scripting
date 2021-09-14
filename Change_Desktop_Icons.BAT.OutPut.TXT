@@ -126,6 +126,17 @@ Start      "Telegram"                                               ^
 
 *********************************************************************
 *                                                                   *
+* Starting the "Teams" Social-Media-Network Client.                 *
+*                                                                   *
+*********************************************************************
+
+Start Cmd.Exe                                                      ^
+/C ^("C:\Program Files (x86)\Microsoft\Teams\current\Teams.exe"      ^
+^>NUL 2^>^&1^)
+
+
+*********************************************************************
+*                                                                   *
 * Starting the "Green-Shot" Screen-Shooter.                         *
 *                                                                   *
 *********************************************************************
@@ -196,14 +207,14 @@ Move /Y                                                             ^
      "M:\Telegram.lnk"                                              ^
      "M:\Desktop_Icons\"
 
-        1 file(s) moved.                                                                                                                                                                                                                    *********************************************************************                                                 *                                                                   *                                                 * Disabling the notifications.                                      *                                                 *                                                                   *
-* Reg Add                                                          ^*
-*"HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications"^*
-*       /v ToastEnabled                                            ^ *
-*       /t REG_DWORD                                                ^*
-*       /d 0                                                        ^*                                                *       /f                                                          *                                                 *                                                                   *                                                 *********************************************************************                                                 The operation completed successfully.                                                                                 *********************************************************************
-*                                                                   *
-* Changing the current local directory to the "PowerShell"          *
+        1 file(s) moved.
+
+*********************************************************************                                                 *                                                                   *                                                 * Disabling the notifications.                                      *                                                 *                                                                   *                                                 * Reg Add                                                          ^*                                                 *"HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications"^*
+*       /v ToastEnabled                                            ^*
+*       /t REG_DWORD                                               ^*
+*       /d 0                                                       ^*
+*       /f                                                          *
+*                                                                   *                                                 *********************************************************************                                                 The operation completed successfully.                                                                                 *********************************************************************                                                 *                                                                   *                                                 * Changing the current local directory to the "PowerShell"          *
 * installation.                                                     *
 *                                                                   *
 *********************************************************************
@@ -217,8 +228,10 @@ ChDir C:\WINDOWS\System32\WindowsPowerShell\v1.0\
 *                                                                   *
 *********************************************************************
 
-C:\WINDOWS\System32\WindowsPowerShell\v1.0\PowerShell.Exe ^
--Command "& {Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser}"
+C:\WINDOWS\System32\WindowsPowerShell\v1.0\PowerShell.Exe           ^
+-Command                                                            ^
+& {Set-ExecutionPolicy -ExecutionPolicy                             ^
+RemoteSigned -Scope CurrentUser}
 
 
 *********************************************************************

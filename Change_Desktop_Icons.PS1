@@ -307,12 +307,23 @@ Set-ItemProperty                                                         `
 #                                                                        #
 ##########################################################################
 
-# Set-ItemProperty                                                       `
-#     -Path  $RegPath_Windows_Explorer                                   `
-#     -Name  $DisableNotificationCenter_Name                             `
-#     -Value $One                                                        `
-#     -Type  DWord                                                       `
-#     -Force
+##########################################################################
+#                                                                        #
+# Set-ItemProperty                                                      `#
+#     -Path  $RegPath_Windows_Explorer                                  `#
+#     -Name  $DisableNotificationCenter_Name                            `#
+#     -Value $One                                                       `#
+#     -Type  DWord                                                      `#
+#     -Force                                                             #
+#                                                                        #
+##########################################################################
+
+##########################################################################
+#                                                                        #
+# The following "Set-ItemProperty" Command-Let is working,               #
+# but it does not produce any kind of effects.                           #
+#                                                                        #
+##########################################################################
 
 Set-ItemProperty                                                         `
     -Path  $RegPath_PushNotifications                                    `

@@ -11,6 +11,8 @@ Rem # Setting the local variables up.                                    #
 Rem #                                                                    #
 Rem ######################################################################
 
+Set CommandLinePreProcessor=Cmd.Exe
+
 Set DigitizationFolder=Digitization
 Set DigitizationBase=%HomeDrive%^
 %HomePath%^
@@ -33,8 +35,10 @@ Set PowerShellScriptDetails=%PowerShellComponent%^
 %PowerShellScriptFileName%
 Set PowerShellScript=%DigitizationBase%^
 %PowerShellScriptDetails%
-Set PowerShellCommand=^& {Set-ExecutionPolicy -ExecutionPolicy ^
-RemoteSigned -Scope CurrentUser}
+Set EchoPowerShellCommand=^^^& {Set-ExecutionPolicy -ExecutionPolicy
+Set EchoPowerShellCommandAppendice=RemoteSigned -Scope CurrentUser}
+Set PowerShellCommand=^& {Set-ExecutionPolicy -ExecutionPolicy
+Set PowerShellCommandAppendice=RemoteSigned -Scope CurrentUser}
 
 Set DesktopIconsFolder=Desktop_Icons
 Set DesktopName=\Desktop
@@ -179,6 +183,12 @@ Set TelegramExecutableFilePath=%TelegramBase%^
 Set TelegramShortcutFileName=Telegram.lnk
 Set TelegramShortcutFilePath=%DesktopBase%^
 %TelegramShortcutFileName%
+
+Set TeamsTitle=Teams
+Set TeamsBase=C:\Program Files (x86)\Microsoft\Teams\current\
+Set TeamsExecutableFileName=Teams.exe
+Set TeamsExecutableFilePath=%TeamsBase%^
+%TeamsExecutableFileName%
 
 Set GreenShotTitle=Green-Shot
 Set GreenShotDetails=Greenshot\
@@ -400,6 +410,27 @@ Start      "%TelegramTitle%"                                             ^
       /D   %TelegramBase%                                                ^
       /Min                                                               ^
       %TelegramExecutableFilePath%
+Echo.
+
+Rem ######################################################################
+Rem #                                                                    #
+Rem # Starting the "Teams" Social-Media-Network Client.                  #
+Rem #                                                                    #
+Rem ######################################################################
+
+Echo *********************************************************************
+Echo *                                                                   *
+Echo * Starting the "Teams" Social-Media-Network Client.                 *
+Echo *                                                                   *
+Echo *********************************************************************
+Echo.
+Echo Start %CommandLinePreProcessor%                                                       ^^
+Echo /C ^^("%TeamsExecutableFilePath%"     ^^
+Echo ^^^>NUL 2^^^>^^^&1^^)
+Echo.
+Start %CommandLinePreProcessor%                                          ^
+      /C ^("%TeamsExecutableFilePath%"                                   ^
+      ^>NUL 2^>^&1^)
 Echo.
 
 Rem ######################################################################
@@ -657,11 +688,15 @@ Echo * Activating the Shell-Scripting on this machine.                   *
 Echo *                                                                   *
 Echo *********************************************************************
 Echo.
-Echo %PowerShellExecutableFilePath% ^^
-Echo -Command "%PowerShellCommand%"
+Echo %PowerShellExecutableFilePath%           ^^
+Echo -Command                                                            ^^
+Echo %EchoPowerShellCommand%                             ^^
+Echo %EchoPowerShellCommandAppendice%
 Echo.
 %PowerShellExecutableFilePath%                                           ^
--Command "%PowerShellCommand%"
+-Command                                                                 ^
+%PowerShellCommand%                                                      ^
+%PowerShellCommandAppendice%
 Echo.
 
 Rem ######################################################################
