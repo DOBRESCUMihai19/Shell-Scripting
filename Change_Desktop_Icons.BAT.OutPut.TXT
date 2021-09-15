@@ -130,8 +130,8 @@ Start      "Telegram"                                               ^
 *                                                                   *
 *********************************************************************
 
-Start Cmd.Exe                                                      ^
-/C ^("C:\Program Files (x86)\Microsoft\Teams\current\Teams.exe"      ^
+Start Cmd.Exe                                                       ^
+/C ^("C:\Program Files (x86)\Microsoft\Teams\current\Teams.exe"     ^
 ^>NUL 2^>^&1^)
 
 
