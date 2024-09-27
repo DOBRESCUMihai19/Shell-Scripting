@@ -48,7 +48,7 @@ Set DesktopBase=%folder_redir_path%^
 Set WaitingTime=600
 Set MappedDrive=M:
 
-Set DownloadsPath=C:\Users\EE65037\Downloads
+Set DownloadsPath=C:\Users\<user_name>\Downloads
 Set DownloadsDrive=L:
 
 Rem ######################################################################
