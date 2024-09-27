@@ -3,7 +3,7 @@
 * Substituting the base of the desktop with the "M:" Mapped Drive.  *
 *                                                                   *
 * Subst M:                                                         ^*
-* \\ISXPFV01.hd00.unicreditgroup.eu\us_qv2_dem_user_data_pool_nra$\EE65037.HD00\Desktop
+* \\<name>.<name>.<name>.eu\<name>$\<name>.<>name\Desktop           *
 *                                                                   *
 *********************************************************************
 
@@ -13,7 +13,7 @@
 * Substituting the downloads path with the "L:" Mapped Drive.       *
 *                                                                   *
 * Subst L:                                                         ^*
-*       C:\Users\EE65037\Downloads                                  *
+*       C:\Users\<name>\Downloads                                   *
 *                                                                   *
 *********************************************************************
 
@@ -209,12 +209,22 @@ Move /Y                                                             ^
 
         1 file(s) moved.
 
-*********************************************************************                                                 *                                                                   *                                                 * Disabling the notifications.                                      *                                                 *                                                                   *                                                 * Reg Add                                                          ^*                                                 *"HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications"^*
+*********************************************************************
+*                                                                   *
+* Disabling the notifications.                                      *
+*                                                                   *
+* Reg Add                                                          ^*
+*"HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications"^*
 *       /v ToastEnabled                                            ^*
 *       /t REG_DWORD                                               ^*
 *       /d 0                                                       ^*
 *       /f                                                          *
-*                                                                   *                                                 *********************************************************************                                                 The operation completed successfully.                                                                                 *********************************************************************                                                 *                                                                   *                                                 * Changing the current local directory to the "PowerShell"          *
+*                                                                   *
+*********************************************************************
+The operation completed successfully.                                
+*********************************************************************
+*                                                                   *
+* Changing the current local directory to the "PowerShell"          *
 * installation.                                                     *
 *                                                                   *
 *********************************************************************
